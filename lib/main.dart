@@ -2,6 +2,8 @@ import 'package:assignment/widgets/my_custom_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import 'home_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Assignment',
-      home: HomeScreen(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
@@ -21,7 +23,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   List<String> userListDrawer = ['Home', 'Profile', 'Favourite'];
 
   @override
@@ -47,13 +54,13 @@ class HomeScreen extends StatelessWidget {
               accountEmail: Text('palashdasweb2@gmail.com')),
           MyCustomTile(
               title: userListDrawer[0],
-              icon: Icons.home,
+              imageUrl: null,
               onClickEvent: () {
                 Fluttertoast.showToast(msg: 'Home');
               }),
           MyCustomTile(
             title: userListDrawer[1],
-            icon: null,
+            imageUrl: null,
             onClickEvent: () {
               Navigator.pop(context);
               Fluttertoast.showToast(msg: 'Profile');
@@ -80,7 +87,36 @@ class HomeScreen extends StatelessWidget {
   }
 
   _myBody(BuildContext context) {
-    return Container();
+    return Stack(
+      children: [
+        Container(
+          height: 200,
+          width: double.infinity,
+          margin: EdgeInsets.all(10.0),
+          color: Colors.grey,
+        ),
+        Positioned(
+            top: 10,
+            left: 10,
+            child: IconButton(
+                onPressed: () {}, icon: Icon(Icons.favorite_border))),
+        Positioned(
+          top: 10,
+          right: 10,
+          child: IconButton(
+              onPressed: () {}, icon: Icon(Icons.shopping_cart_outlined)),
+        ),
+        Positioned(
+            bottom: 10,
+            left: 10,
+            child: IconButton(onPressed: () {}, icon: Icon(Icons.person))),
+        Positioned(
+            bottom: 10,
+            right: 10,
+            child: IconButton(
+                onPressed: () {}, icon: Icon(Icons.star_border_outlined)))
+      ],
+    );
   }
 
   _myFloatingActionButton(BuildContext context) {

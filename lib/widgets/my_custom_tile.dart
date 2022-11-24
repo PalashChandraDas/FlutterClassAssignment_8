@@ -4,26 +4,31 @@ class MyCustomTile extends StatelessWidget {
   String title;
   String? subTitle;
   String? trailing;
-  IconData? icon;
+  String? imageUrl;
   VoidCallback onClickEvent;
+  VoidCallback? longPress;
 
   MyCustomTile(
-      {required this.title,
+      {super.key, required this.title,
       this.subTitle,
       this.trailing,
-      required this.icon,
-      required this.onClickEvent});
+      this.imageUrl,
+      required this.onClickEvent,
+      this.longPress});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: onClickEvent,
       title: Text(title),
-      leading: CircleAvatar(
-        child: icon == null? Text(title[0]) : Icon(icon),
+      leading: ClipOval(
+        child: CircleAvatar(
+          child: imageUrl == null ? Text(title[0]) : Image.network(imageUrl!),
+        ),
       ),
       trailing: Text(trailing ?? ''),
       subtitle: Text(subTitle ?? ''),
+      onLongPress: longPress,
     );
   }
 }
