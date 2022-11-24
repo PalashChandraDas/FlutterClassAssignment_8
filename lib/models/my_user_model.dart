@@ -1,5 +1,4 @@
-class MyUserModel{
-
+class MyUserModel {
   String? userId;
   String? userName;
   String? userImage;
