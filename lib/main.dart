@@ -1,4 +1,4 @@
-import 'package:assignment/pages/list_view.dart';
+import 'package:assignment/pages/list_grid_view.dart';
 import 'package:assignment/widgets/my_custom_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
